@@ -1,10 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:design_pattern/state/my_home_state.dart';
+import 'package:design_pattern/model/my_home_model.dart';
 
-class MyHomePageStateNotifier extends StateNotifier<MyHomePageState> {
-  MyHomePageStateNotifier() : super(const MyHomePageState());
+// reverpodのStateNotifierProviderを利用
+final myHomePageProvider =
+    StateNotifierProvider<MyHomePageViewModel, MyHomePageModel>(
+        (ref) => MyHomePageViewModel());
 
-  void increment() {
-    state = state.copyWith(state.counter + 1);
+class MyHomePageViewModel extends StateNotifier<MyHomePageModel> {
+  MyHomePageViewModel() : super(const MyHomePageModel());
+
+  void updateCounter() {
+    state = state.updateCounter(state.counter);
   }
 }

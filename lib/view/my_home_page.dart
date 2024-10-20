@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:design_pattern/main.dart';
+import 'package:design_pattern/view_model/my_home_view_moder.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -68,10 +68,10 @@ class WidgetC extends ConsumerWidget {
     print("WidgetCをビルド");
     // context.read<管理したい状態があるクラス>().メソッド;
     // read・・・いかなる時も，リビルド情報の再描画を行わない→見た目が全く変わらないものは，readとする方が良い．
-    final Function increment = ref.read(myHomePageProvider.notifier).increment;
+
     return ElevatedButton(
         onPressed: () {
-          increment();
+          ref.watch(myHomePageProvider.notifier).updateCounter();
         },
         child: const Text('カウント'));
   }
